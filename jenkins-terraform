@@ -1,0 +1,16 @@
+pipeline {
+  agent { label 'jenkins-ssh-slave-2' }
+  stages {
+    stage('Hello') {
+      steps {
+        sh 'terraform init'
+      }
+    }
+    stage ("terraform Action") {
+      steps {
+        echo "Terraform action is --> ${action}"
+        sh ('terraform ${action} --auto-approve') 
+        }
+      }
+    }
+}
